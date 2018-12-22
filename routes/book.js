@@ -13,23 +13,16 @@ console.log("get books");
 router.get('/', function(req, res, next) {
   console.log("get books");
   Book.list(function(err, result) {
-    if (err) {
-      return res.status(400).json({
-        error: err
-      });
-    }
+    if (err) return next(err);
     return res.json(result);
   });
 });
 
 /* GET SINGLE BOOK BY ID */
-router.post('/:id', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
+  console.log("req.params.idreq.params.id",req.params.id);
   Book.findById(req.params.id,function(err, result) {
-    if (err) {
-      return res.status(400).json({
-        error: err
-      });
-    }
+    if (err) return next(err);
   return res.json(result);
   });
 });
@@ -37,11 +30,7 @@ router.post('/:id', function(req, res, next) {
 /* SAVE BOOK */
 router.post('/', function(req, res, next) {
   Book.add(req.body,function(err, result) {
-    if (err) {
-      return res.status(400).json({
-        error: err
-      });
-    }
+    if (err) return next(err);
   return res.json(result);
   });
 });
@@ -49,11 +38,7 @@ router.post('/', function(req, res, next) {
 /* UPDATE BOOK */
 router.put('/:id', function(req, res, next) {
   Book.add(req.params.id, req.body,function(err, result) {
-    if (err) {
-      return res.status(400).json({
-        error: err
-      });
-    }
+    if (err) return next(err);
     return res.json(result);
   });
 });
@@ -61,11 +46,7 @@ router.put('/:id', function(req, res, next) {
 /* DELETE BOOK */
 router.delete('/:id', function(req, res, next) {
   Book.findByIdAndRemove(req.params.id, req.body,function(err, result) {
-    if (err) {
-      return res.status(400).json({
-        error: err
-      });
-    }
+      if (err) return next(err);
     return res.json(result);
   });
 });
