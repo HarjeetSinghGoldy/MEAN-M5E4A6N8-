@@ -1,0 +1,5 @@
+{
+  "connectionString": "mongodb://localhost/node-mongo-registration-login-api",
+  "secret": "hello my name is harjeet",
+  "image_upload_uri": "http://172.17.0.1:3003/api/upload"
+}

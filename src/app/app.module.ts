@@ -11,6 +11,7 @@ import { BookCreateComponent } from './book-create/book-create.component';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 import {
   MatInputModule,
   MatPaginatorModule,
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     BookEditComponent
   ],
   imports: [
+    RouterModule,
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
