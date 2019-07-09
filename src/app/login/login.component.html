@@ -1,0 +1,48 @@
+<!-- <div class="container">
+  <div class="card">
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <div fxLayout="row">
+    <div fxFlex="50">
+  <mat-form-field>
+      <input matInput placeholder="Username" (ngModel)="username">
+    </mat-form-field>
+  </div>
+<div fxFlex="50">
+    <mat-form-field>
+        <input matInput placeholder="Password" (ngModel)="password">
+      </mat-form-field>
+    </div>
+    </div>
+    <button mat-raised-button color="primary">Submit</button><br/>
+   
+    <div><a (click)="navigateToSignIn()">Sign In</a></div>
+</mat-card>
+</div>
+</div> -->
+
+<div class="button-row">
+    <!-- <a mat-raised-button color="primary" [routerLink]="['/books']"><mat-icon>list</mat-icon></a> -->
+  
+  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Username" formControlName="username"
+             [errorStateMatcher]="matcher">
+      <mat-error>
+        <span *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">Please enter username</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Password" formControlName="password"
+             [errorStateMatcher]="matcher">
+      <mat-error>
+        <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">Please enter password</span>
+      </mat-error>
+    </mat-form-field>
+    
+   
+    <div class="button-row">
+      <button type="submit" [disabled]="!loginForm.valid" mat-raised-button color="primary">Submit</button>
+    </div>
+  </form>
+</div>

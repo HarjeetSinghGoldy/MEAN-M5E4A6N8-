@@ -2,11 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
+var User = require('../models/User.js');
+const expressJwt = require('express-jwt');
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({'Content-Type': 'application/json'
+})
 };
 const apiUrl = "/api";
+const apiUserUrl = "/api/user";
+
 
 @Injectable({
   providedIn: 'root'
@@ -70,4 +75,23 @@ export class ApiService {
         catchError(this.handleError)
       );
   }
+
+  postUser(data): Observable<any> { // Register / Sign up
+    console.log('service user sign up',data);
+    return this.http.post(apiUserUrl, data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  postUserLoginForm(data): Observable<any> { // Login
+    return this.http.post(apiUserUrl + '/login', data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+   async getById(id) {
+    return await User.findById(id).select('-hash');
+}
 }

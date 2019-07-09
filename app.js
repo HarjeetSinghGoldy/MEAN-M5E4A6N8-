@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+//const config = require('config.json'); 
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/mean-angular6')
@@ -10,6 +11,7 @@ mongoose.connect('mongodb://localhost/mean-angular6')
   .catch((err) => console.error(err));
 
 var apiRouter = require('./routes/book');
+var apiRouterUser = require('./routes/user');
 
 var app = express();
 
@@ -22,6 +24,7 @@ app.use('/book-details/:id', express.static(path.join(__dirname, 'dist/mean-angu
 app.use('/book-create', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/book-edit/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/api', apiRouter);
+app.use('/api/user', apiRouterUser);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

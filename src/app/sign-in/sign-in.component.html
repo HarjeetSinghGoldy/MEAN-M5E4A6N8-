@@ -1,0 +1,69 @@
+<!-- <div class="container">
+    <div class="card">
+        <form [formGroup]="userForm" (ngSubmit)="onFormSubmit(userForm.value)">
+  <mat-card>
+    <mat-card-title>Sign In</mat-card-title>
+    <div fxLayout="row">
+      <div fxFlex="50">
+    <mat-form-field>
+        <input matInput placeholder="Email Address" formControlName="email">
+      </mat-form-field>
+    </div>
+  <div fxFlex="25">
+      <mat-form-field>
+          <input matInput placeholder="Password">
+        </mat-form-field>
+      </div>
+      <div fxFlex="25">
+          <mat-form-field>
+              <input matInput placeholder="First Name" formControlName="firstName">
+            </mat-form-field>
+          </div>
+      </div>
+      <button type="submit"  mat-raised-button color="primary">Submit</button>
+  </mat-card>
+  </form>
+  </div>
+  </div>
+   -->
+
+   <div class="button-row">
+      <!-- <a mat-raised-button color="primary" [routerLink]="['/books']"><mat-icon>list</mat-icon></a> -->
+    
+    <form [formGroup]="userForm" (ngSubmit)="onFormSubmit(userForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email Address" formControlName="email"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!userForm.get('email').valid && userForm.get('email').touched">Please enter email address</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="User Name" formControlName="username"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!userForm.get('username').valid && userForm.get('username').touched">Please enter User Name</span>
+          </mat-error>
+        </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" formControlName="password"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!userForm.get('password').valid && userForm.get('password').touched">Please enter password</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="First Name" formControlName="firstName"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!userForm.get('firstName').valid && userForm.get('firstName').touched">Please enter First Name</span>
+        </mat-error>
+      </mat-form-field>
+      
+     
+      <div class="button-row">
+        <button type="submit" [disabled]="!userForm.valid" mat-raised-button color="primary"><mat-icon>save</mat-icon></button>
+      </div>
+    </form>
+  </div>
+    

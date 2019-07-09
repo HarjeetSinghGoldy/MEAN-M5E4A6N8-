@@ -11,6 +11,8 @@ import { BookCreateComponent } from './book-create/book-create.component';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+
 import {
   MatInputModule,
   MatPaginatorModule,
@@ -21,6 +23,8 @@ import {
   MatButtonModule,
   MatCardModule,
   MatFormFieldModule } from "@angular/material";
+import { LoginComponent } from './login/login.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 const appRoutes: Routes = [
   {
@@ -43,8 +47,18 @@ const appRoutes: Routes = [
     component: BookEditComponent,
     data: { title: 'Edit Book' }
   },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Login Page' }
+  },
+  {
+    path: 'SignIn',
+    component: SignInComponent,
+    data: { title: 'Sign In Page' }
+  },
   { path: '',
-    redirectTo: '/books',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ];
@@ -55,7 +69,9 @@ const appRoutes: Routes = [
     BookComponent,
     BookDetailComponent,
     BookCreateComponent,
-    BookEditComponent
+    BookEditComponent,
+    LoginComponent,
+    SignInComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
