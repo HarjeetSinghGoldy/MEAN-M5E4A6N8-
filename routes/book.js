@@ -1,45 +1,53 @@
+
+// ensure the NODE_ENV is set to 'test'
+// this is helpful when you would like to change behavior when testing
+process.env.NODE_ENV = 'development';
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-var Book = require('../models/Book.js');
+var Book = require('../lib/bookHandler');
+
+console.log("get books");
+
 
 /* GET ALL BOOKS */
 router.get('/', function(req, res, next) {
-  Book.find(function (err, products) {
+  console.log("get books");
+  Book.list(function(err, result) {
     if (err) return next(err);
-    res.json(products);
+    return res.json(result);
   });
 });
 
 /* GET SINGLE BOOK BY ID */
 router.get('/:id', function(req, res, next) {
-  Book.findById(req.params.id, function (err, post) {
+  console.log("req.params.idreq.params.id",req.params.id);
+  Book.findById(req.params.id,function(err, result) {
     if (err) return next(err);
-    res.json(post);
+  return res.json(result);
   });
 });
 
 /* SAVE BOOK */
 router.post('/', function(req, res, next) {
-  Book.create(req.body, function (err, post) {
+  Book.add(req.body,function(err, result) {
     if (err) return next(err);
-    res.json(post);
+  return res.json(result);
   });
 });
 
 /* UPDATE BOOK */
 router.put('/:id', function(req, res, next) {
-  Book.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  Book.add(req.params.id, req.body,function(err, result) {
     if (err) return next(err);
-    res.json(post);
+    return res.json(result);
   });
 });
 
 /* DELETE BOOK */
 router.delete('/:id', function(req, res, next) {
-  Book.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
+  Book.findByIdAndRemove(req.params.id, req.body,function(err, result) {
+      if (err) return next(err);
+    return res.json(result);
   });
 });
 

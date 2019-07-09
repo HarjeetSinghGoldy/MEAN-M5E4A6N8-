@@ -12,7 +12,10 @@ import { BookEditComponent } from './book-edit/book-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 847e6c4192b84d5b43ec73d0b729f9c67c7daf5d
 import {
   MatInputModule,
   MatPaginatorModule,
@@ -74,6 +77,7 @@ const appRoutes: Routes = [
     SignInComponent
   ],
   imports: [
+    RouterModule,
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
